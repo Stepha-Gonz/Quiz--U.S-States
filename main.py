@@ -20,10 +20,7 @@ guessed_states=[]
 while len(guessed_states)<50:
     user_answer=t.textinput(f"Guess the state {len(guessed_states)}/50", "Please enter a State name, or 'exit' to leave the game").title()
     if user_answer=="Exit":
-        not_guessed_states=[]
-        for state in state_list:
-            if state not in guessed_states:
-                not_guessed_states.append(state)
+        not_guessed_states=[state for state in state_list if state not in guessed_states]
         missing_states_data=pd.DataFrame(not_guessed_states)
         missing_states_data.to_csv("states_to_learn.csv")  
         break
